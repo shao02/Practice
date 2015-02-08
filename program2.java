@@ -52,5 +52,15 @@ public class Solution {
     	return false;
     }
 
+    /*Maximum Depth or Height of a Tree*/
+    public int maxDepth(TreeNode tree){
+		if(tree == null)
+			return 0;
+		int left = maxDepth(tree.left);
+		int right = maxDepth(tree.right);
+
+		return Math.max(left,right)+1;
+    }
+
 
 }
