@@ -75,4 +75,26 @@ public class Solution {
     	tree.right = tmp;
     }
 
+    /*Print all path of a Tree*/
+	/*need to make sure path is large enough to cover the longest path.*/
+    static public void printPath(int [] path, int size, TreeNode tree){
+    	if(tree == null)
+    		return;
+    	if(tree.left == null && tree.right == null)
+    		printAll(path);
+
+    	path[size] = tree.data;
+    	printPath(path,size+1,tree.left); 
+    	printPath(path,size+1,tree.right);
+    }
+
+   	static private printAll(int[] path, int size){
+   		for(int i=0, i<size; i++){
+   			system.out.print(path[i]);
+   		}
+   	}
+
+    /*Print all path of a Tree*/
+
+
 }
