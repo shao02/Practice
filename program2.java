@@ -39,6 +39,18 @@ public class Solution {
     	if(head == null)
     		return 0;
     	return TreeSizeCal(head.left)+TreeSizeCal(head.right) +1;    		
-    	}
     }
+
+    /*This is a function to check if two trees are identical*/
+    public Boolean sameTree(TreeNode tree1,TreeNode tree2){
+    	if(tree1 == null && tree2 == null)
+    		return true;
+    	if(tree1 != null && tree2 != null){
+    		return (tree1.data == tree2.data &&
+    				sameTree(tree1.left, tree2.left) && sameTree(tree1.right, tree2.right)); 
+    	}
+    	return false;
+    }
+
+
 }
