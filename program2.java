@@ -108,7 +108,20 @@ public class Solution {
     	return root;
     }
 
-    
+
+    /*Program to count leaf nodes in a binary tree*/
+
+    static public int countLeaf(TreeNode root){
+    	if(root == null)
+    		return 0;
+
+    	if(root.left == null && root.right == null)
+    		return 1;
+
+    	return countLeaf(root.left) + countLeaf(root.right);
+
+    }
+
 
 
 }
