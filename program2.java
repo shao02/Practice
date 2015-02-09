@@ -94,7 +94,21 @@ public class Solution {
    		}
    	}
 
-    /*Print all path of a Tree*/
+    /*End Print all path of a Tree*/
+
+    /*Lowest Common Ancestor in a Binary Search Tree.*/
+    static public TreeNode lowestCommonAnc(TreeNode root, int num1, int num2){
+    	if(root == null)
+    		return null;
+    	if(root.data > num1 && root.data > num2)
+    		return lowestCommonAnc(root.left,num1,num2);
+    	if(root.data < num1 && root.data < num2)
+    		return lowestCommonAnc(root.right,num1,num2);
+
+    	return root;
+    }
+
+    
 
 
 }
