@@ -37,8 +37,25 @@ public class Solution {
         	}
         	j++;
         }
-       
        	return i; 
+    }
 
+    public int maxProduct(int[] A) {
+    	if(A==null || A.length == 0)
+    		return -1;
+    	int prod = A[0];
+    	int max = A[0];
+
+    	for(int i=1; i< A.length; i++){
+    		if(A[i]*prod>A[i]){
+    			prod=A[i]*prod;
+    		}else{
+    			prod=A[i];
+    		}
+    		if(prod > max){
+    			max=prod;
+    		}
+    	}
+    	return max;
     }
 }
