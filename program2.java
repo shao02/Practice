@@ -122,6 +122,23 @@ public class Solution {
 
     }
 
+    static public void levelOrder(TreeNode	root){
+    	Queue queueA = new LinkedList();
+    	TreeNode tmp = root;
+
+    	while(tmp!=null){
+    		system.out.print(tmp.data);
+
+    		if(tmp.left != null)
+    			queueA.add(tmp.left);
+    		if(tmp.right != null)
+    			queueA.add(tmp.right);
+    		tmp = queueA.pop();
+
+    	}
+    }
+
+
 
 
 }
