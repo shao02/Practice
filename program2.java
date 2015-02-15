@@ -138,6 +138,70 @@ public class Solution {
     	}
     }
 
+    //level order spiral with queue.
+    static public void levelOrderSpiral(TreeNode root){
+    	Queue queueA = new LinkedList();
+    	TreeNode tmp = root;
+    	int i=1;
+
+    	while(tmp != null){
+    		system.out.print(tmp.data);
+    		if(i%2 == 1){
+    			if (tmp.left != null) {
+    				queueA.add(tmp.left);
+    			}
+    			if (tmp.right != null) {
+    				queueA.add(tmp.right);
+    			}
+    		}else{
+    			if (tmp.right != null) {
+    				queueA.add(tmp.right);
+    			}
+    			if (tmp.left != null) {
+    				queueA.add(tmp.left);
+    			}
+    		}
+    		i++;
+    	}
+    }
+
+    //level order spiral without queue.
+    static public void levelOrderSpiralNQ(TreeNode root){
+    	int height = Height(root);
+    	for(int i = 0; i< height; i ++){
+    		printLevel(root,i,i%2);	
+    	}
+    }
+
+    static private void printLevel(TreeNode root, int level, int k){
+    	if(level == 0 && root!=null)
+    		system.out.print(root.data);
+    	else{
+    		if(k==1){
+    			printLevel(root.left,level-1,k);
+    			printLevel(root.right,level-1,k);	
+    		}else{
+    			printLevel(root.right,level-1,k);
+    			printLevel(root.left,level-1,k);
+    		}
+    		
+    	}
+    }
+
+    //level order spiral without queue helper.
+    static private int Height(TreeNode root){
+    	if(root == null)
+    		return 0;
+    	else{
+    		int left = Height(root.left);
+    		int right = Height(root.right);
+    		if(left > right)
+    			return left + 1;
+    		return right +1;
+    	}
+    }
+
+
 
 
 
