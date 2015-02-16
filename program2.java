@@ -203,7 +203,7 @@ public class Solution {
 
 
     //Check for Children Sum Property in a Binary Tree.
-    static private Boolean checkChildrenSum(TreeNode root){
+    static public Boolean checkChildrenSum(TreeNode root){
         if(root == null)
             return true;
         if(root.left == null && root.right == null)
@@ -222,9 +222,63 @@ public class Solution {
     }
 
     //Convert an arbitrary Binary Tree to a tree that holds Children Sum Property
-    static private void convertChildernSum(TreeNode root){
+    static public void convertChildernSum(TreeNode root){
+        if(root == null)
+            return;
+        convertChildernSum(root.left);
+        convertChildernSum(root.right);
 
+        int left_data = 0;
+        int right_data = 0;
+
+        if(root.left != null)
+            left_data = root.left.data;
+        if(root.right != null)
+            right_data = root.right.data;
+
+        int diff = left_data + right_data - root.data;
+        if(diff > 0)
+            root.data = left_data + right_data;
+        else if(diff < 0){
+            root.left.data = root.data - right_data;
+            increase(root.left);
+        }
     }
 
+    static private void increase(TreeNode root){
+        if(root == null || root.left == null && root.right == null)
+            return;
+
+        if(root.left == null){
+            root.right.data = root.data;
+            return;
+        }
+        if(root.right == null){
+            root.left.data = root.data;
+            return;
+        }
+
+        root.left.data = root.data - root.right.data;
+        increase(root.left);
+    }
+
+    //End convert an arbitrary Binary Tree to a tree that holds Children Sum Property
+
+    //Diameter of a Binary Tree
+    static public int computeDiameter(TreeNode root){
+        if(root == null)
+            return 0;
+
+        int left_height = height(root.left);
+        int right_height = height(root.right);
+
+        //through root.
+        int diameterRt = left_height + right_height + 1;
+
+        int leftDia = computeDiameter(root.left);
+        int rightDia = computeDiameter(root.right);
+
+        return Math.max(diameterRt,Math.max(lefDia,rightDia));
+    }
 
 }
