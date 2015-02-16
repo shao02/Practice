@@ -202,7 +202,29 @@ public class Solution {
     }
 
 
+    //Check for Children Sum Property in a Binary Tree.
+    static private Boolean checkChildrenSum(TreeNode root){
+        if(root == null)
+            return true;
+        if(root.left == null && root.right == null)
+            return true;
 
+        int left=0;
+        int right=0;
+        if(root.left != null)
+            left=root.left.data;
+        if(root.right != null)
+            right=root.right.data;
+
+        if(left + right != root)
+            return false;
+        return checkChildrenSum(root.left) && checkChildrenSum(root.right);
+    }
+
+    //Convert an arbitrary Binary Tree to a tree that holds Children Sum Property
+    static private void convertChildernSum(TreeNode root){
+
+    }
 
 
 }
