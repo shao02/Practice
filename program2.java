@@ -280,5 +280,41 @@ public class Solution {
 
         return Math.max(diameterRt,Math.max(lefDia,rightDia));
     }
-    
+
+    //if a binary tree is height-balanced
+    static public Boolean isBalance(TreeNode root){
+        // left sub tree is balanced && right sub tree is balanced
+        // diff of max height of left and right is less than or equal to one. 
+    }
+
+    static public void inorderTraversalNoRecurse(TreeNode root){
+        //???
+    }
+
+    //Maximum width of a binary tree
+    static public int maxWidthOfTree(TreeNode root){
+        if(root == null)
+            return 0;
+        int height = Height(root);
+        int [] tmp = new int [height];
+        int iterate = 0;
+        helper(root,tmp,0);
+        int maxWidth = 0;
+        for(int i =0; i< height; i++){
+            if(maxWidth < tmp[i])
+                maxWidth = tmp[i];
+        }
+        return maxWidth;
+    }
+
+    static private void helper(TreeNode root,int[] tmp,int iterate){
+        if(root == null || tmp.length <= iterate)
+            return;
+        tmp[iterate]=tmp[iterate]+1;
+        helper(root.left,tmp,iterate+1);
+        helper(root.right,tmp,iterate+1);
+    }
+
+    //End Maximum width of a binary tree
+
 }
