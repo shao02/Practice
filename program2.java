@@ -90,7 +90,7 @@ public class Solution {
 
    	static private printAll(int[] path, int size){
    		for(int i=0, i<size; i++){
-   			system.out.print(path[i]);
+   			System.out.print(path[i]);
    		}
    	}
 
@@ -127,7 +127,7 @@ public class Solution {
     	TreeNode tmp = root;
 
     	while(tmp!=null){
-    		system.out.print(tmp.data);
+    		System.out.print(tmp.data);
 
     		if(tmp.left != null)
     			queueA.add(tmp.left);
@@ -145,7 +145,7 @@ public class Solution {
     	int i=1;
 
     	while(tmp != null){
-    		system.out.print(tmp.data);
+    		System.out.print(tmp.data);
     		if(i%2 == 1){
     			if (tmp.left != null) {
     				queueA.add(tmp.left);
@@ -175,7 +175,7 @@ public class Solution {
 
     static private void printLevel(TreeNode root, int level, int k){
     	if(level == 0 && root!=null)
-    		system.out.print(root.data);
+    		System.out.print(root.data);
     	else{
     		if(k==1){
     			printLevel(root.left,level-1,k);
@@ -304,7 +304,7 @@ public class Solution {
             if(maxWidth < tmp[i])
                 maxWidth = tmp[i];
         }
-        return maxWidth;
+        return maxWidth；
     }
 
     static private void helper(TreeNode root,int[] tmp,int iterate){
@@ -316,5 +316,35 @@ public class Solution {
     }
 
     //End Maximum width of a binary tree
+    //Print Ancestors of a given node in Binary Tree
+    static public Boolean printAncestors(TreeNode root,int num){
+        if(root == null)
+            return false;
 
+        if(root.data == num)
+            return true;
+
+        if(printAncestors(root.left,num) || printAncestors(root.right,num)){
+            System.out.print(root.data);
+            return true;
+        }        
+
+        return false;
+    }
+
+    //Print Range from a BST.
+    static public void printRangeofBST(TreeNode root,int left,int right){
+        if(root == null)
+            return;
+
+        if(root.data > left)
+            printRangeofBST(root.left,left,right);
+        if(root.data >= left && root.data <= right){
+            System.out.print(root.data);
+        }
+        if(root.data < right)
+            printRangeofBST(root.right,left,right);
+    }
+
+    //Tournament Tree (Winner Tree) and Binary Heap ????
 }
