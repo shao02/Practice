@@ -400,6 +400,27 @@ public class Solution {
         return false;
     }
 
+    //Sorted Array to Balanced BST
+    static public TreeNode convertToTree(ArrayList a){
+        if(a == null || a.size()==0)
+            return null;
+
+        return sortedArrayToTree(a,0,a.size());
+    }
+
+    static private TreeNode sortedArrayToTree(ArrayList a, int left, int right){
+        if(left > right)
+            return null;
+
+        int mid = (right + left)/2;
+
+        int data = a.get(mid);
+        TreeNode root = new TreeNode(data);
+        root.left = sortedArrayToTree(a,left,mid-1);
+        root.right = sortedArrayToTree(mid+1,right);
+
+        return root;
+    }
 
 
 }
