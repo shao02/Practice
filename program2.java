@@ -5,8 +5,11 @@
  *     TreeNode left;
  *     TreeNode right;
  *     TreeNode(int x) { val = x; }
- * }
+ * } 
+ *    //Decision Trees – Fake (Counterfeit) Coin Puzzle (12 Coin Puzzle) ????????
+ *    //Connect nodes at same level;?????????
  */
+
 public class Solution {
 	/*This is a function for Tree Inorder Traversals*/
     static public TreeNode InorderTraversal(TreeNode head) {
@@ -32,7 +35,7 @@ public class Solution {
     	PostorderTraversal(head.left);
     	PostorderTraversal(head.right);
     	System.out.println(head.val);
-    }
+  z  }
 
     /*This is a function to Calculate Size of a tree*/
     static public TreeNode TreeSizeCal(TreeNode head) {
@@ -374,5 +377,29 @@ public class Solution {
 
         return false;
     }
+
+     //Check if a binary tree is subtree of another binary tree. Is a subtree of b. 
+    static public Boolean isSubtree(TreeNode a, TreeNode b){
+        if(b == null)
+            return false;
+        if(a == null)
+            return true;
+
+        if(a.data == b.data)
+            return isIdentical(a,b);
+        return (isSubtree(a,b.left) || isSubtree(a,b.left));
+    }
+    static private Boolean isIdentical(TreeNode a, TreeNode b){
+        if(a == null && b == null)
+            return true;
+        if(a == null || b == null)
+            return false;
+        if(a.data == b.data)
+            return (isIdentical(a.left,b.left) &&
+                    isIdentical(a.right,b.right) );
+        return false;
+    }
+
+
 
 }
