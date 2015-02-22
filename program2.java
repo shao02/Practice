@@ -347,4 +347,32 @@ public class Solution {
     }
 
     //Tournament Tree (Winner Tree) and Binary Heap ????
+
+
+
+    //Check if a given Binary Tree is SumTree
+    static public Boolean isSumTree(TreeNode root){
+        if(root == null)
+            return false;
+
+        //leave case.
+        if(root.left == null && root.right == null)
+            return true;
+        int left = 0;
+        int right = 0;
+
+        //left is true
+        if(root.left != null && isSumTree(root.left)){
+            left = root.left;
+        }
+        //right is true
+        if(root.right !- null && isSumTree(root.right)){
+            right = root.right;
+        }
+        if(root.data == 2*(right+left))
+            return true;
+
+        return false;
+    }
+
 }
