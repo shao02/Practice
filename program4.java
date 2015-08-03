@@ -576,11 +576,108 @@ public class Solution {
     }
 
     //Print ancestors of a given binary tree node
-    static public void printAncestors(TreeNode node){
+    static public Boolean printAncestors(TreeNode node, int key){
+        Boolean rt;
+        if(node == null)
+            return false;
+
+        if(node.data == key)
+            return true;
+
+        if(node.data > key){
+            rt = printAncestors(node.left,key);
+            if(rt)
+                System.out.print(node.data);
+        }
+        else{
+            rt = printAncestors(node.right,key)
+            if(rt)
+                 System.out.print(node.data);
+        }
+
+        return rt;     
+    }
+
+    //Print ancestors of a given binary tree node without recursion
+    static public void printAncestors(TreeNode node, int key){
+        Stack<TreeNode> stackNode = new Stack<TreeNode>();
+        if(node == null)
+            return;
+
+        stackNode.push(node);
+
+        while(!stackNode.empty()){
+            TreeNode tmp = stackNode.pop();
+            if(tmp.data == key){
+                break;
+            }
+            if(tmp.data > key){
+                stackNode.push(tmp);
+                if(tmp.left != null)
+                    stackNode.push(tmp.left);
+                else
+                    return;//not found
+            }else{
+                stackNode.push(tmp);
+                if(tmp.right != null)
+                    stackNode.push(tmp.right);
+                else
+                    break;//not found
+            }
+        }
+        while(!stackNode.empty()){
+            System.out.print(stackNode.pop().data);
+        }
+    }
+
+    //Convert a given Binary Tree to Doubly Linked List
+    static public void convertTreeToDoubleL(TreeNode node){
+        if(node == null)
+            return;
+        Stack<TreeNode> stackNode = new Stack<TreeNode>();
+        TreeNode tmp = node;
+        stackNode.push(tmp);
         
+
     }
 
 
+//Different Ways to Add Parentheses 
+public class Solution {
+    public List<Integer> diffWaysToCompute(String input) {
+        List<Integer> rt = new ArrayList<Integer>();
+        if(input == null || input.length() == 0)
+            return rt;
+        for(int i=0;i<input.length(); i++){
+            char curChar = input.charAt(i);
+            if(curChar == '+' || 
+                curChar == '-' ||
+                curChar == '*'){
+                    String part1 = input.substring(0,i);
+                    String part2 = input.substring(i+1);
+                    List<Integer> p1Rt = diffWaysToCompute(part1);
+                    List<Integer> p2Rt = diffWaysToCompute(part2);
+                    int tmp = 0;
+                    for(Integer p1 : p1Rt){
+                         for(Integer p2 : p2Rt){
+                             switch(curChar){
+                                 case '+': tmp = p1+p2;
+                                 break;
+                                 case '-': tmp = p1-p2;
+                                 break;
+                                 case '*': tmp = p1*p2;
+                                 break;
+                             }
+                             rt.add(tmp);
+                         }
+                    }
+                }
+        }
+        if(rt.size() == 0)
+            rt.add(Integer.parseInt(input));
+        return rt;
+    }
+}
 
 
 }
