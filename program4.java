@@ -679,5 +679,49 @@ public class Solution {
     }
 }
 
+//Search a 2D Matrix II 
+public class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        if(matrix == null || matrix.length == 0)
+            return false;
+        int col = matrix[0].length-1;
+        int row = 0;
+        while(col >= 0 && row < matrix.length){
+            if(matrix[row][col] == target)
+                return true;
+            else if(matrix[row][col] > target)
+                col --;
+            else 
+                row ++;
+                
+        }
+        return false;
+    }
+}
+
+
+//Lowest Common Ancestor of a Binary Tree 
+public class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root == p || root == q)
+            return root;
+        boolean pL = helper(root.left,p); 
+        boolean qL = helper(root.left,q); 
+        if(pL && !qL || !pL && qL)
+            return root;
+        if(pL && qL)
+            return lowestCommonAncestor(root.left,p,q);
+        else
+            return lowestCommonAncestor(root.right,p,q);
+    }
+    
+    private boolean helper(TreeNode root, TreeNode key){
+        if(root == null || key ==null)
+            return false;
+        if(root == key)
+            return true;
+        return helper(root.right,key) || helper(root.left,key);
+    }
+}
 
 }
