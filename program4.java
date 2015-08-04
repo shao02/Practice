@@ -724,4 +724,37 @@ public class Solution {
     }
 }
 
+
+
+//Kth Smallest Element in a BST 
+public class Solution {
+    public int kthSmallest(TreeNode root, int k) {
+        if(root == null)
+            return -1;
+        Stack<TreeNode> st = new Stack<TreeNode>();
+        TreeNode cur = root;
+        st.push(cur);
+        while(cur.left != null){
+            cur = cur.left;
+            st.push(cur);
+        }
+        
+        while(!st.empty()){
+            cur = st.pop();
+            k--;
+            if(k==0)
+                return cur.val;
+            if(cur.right != null){
+                cur = cur.right;
+                st.push(cur);
+                while(cur.left != null){
+                    cur = cur.left;
+                    st.push(cur);
+                }
+            }
+        }
+        return -1;
+    }
+}
+
 }
